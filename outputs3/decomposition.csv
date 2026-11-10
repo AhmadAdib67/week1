@@ -1,0 +1,16 @@
+metric,contrast,mean_diff,ci95_lo,ci95_hi,n_frames
+group_exit_gap,SIMULATOR RULE effect (reference - individual),-0.6804166666666667,-1.24090625,-0.1409583333333338,8
+group_exit_gap,"DETECTOR cost, proximity (inferred_prox - reference)",0.24687499999999998,-0.15,0.7220312499999992,8
+group_exit_gap,"DETECTOR cost, motion (inferred_motion - reference)",0.190625,0.0,0.5718749999999999,8
+group_exit_gap,CONTROL: random groups (shuffled - reference),3.1827083333333333,1.3273958333333333,5.215828124999998,8
+group_exit_gap,motion vs proximity (motion - proximity),-0.056249999999999994,-0.35624999999999996,0.175,8
+evac_time,SIMULATOR RULE effect (reference - individual),0.33125,-0.11265625000000001,0.775,8
+evac_time,"DETECTOR cost, proximity (inferred_prox - reference)",-0.0875,-0.4503125,0.1875,8
+evac_time,"DETECTOR cost, motion (inferred_motion - reference)",-0.08125,-0.24375000000000002,0.0,8
+evac_time,CONTROL: random groups (shuffled - reference),0.53125,0.18125000000000002,0.9375,8
+evac_time,motion vs proximity (motion - proximity),0.006249999999999978,-0.275,0.38765624999999915,8
+mean_exit,SIMULATOR RULE effect (reference - individual),0.5227678571428572,0.2276041666666667,0.8713634672619047,8
+mean_exit,"DETECTOR cost, proximity (inferred_prox - reference)",-0.06996753246753246,-0.19159226190476183,0.045359848484848475,8
+mean_exit,"DETECTOR cost, motion (inferred_motion - reference)",-0.04479166666666669,-0.13437500000000008,0.0,8
+mean_exit,CONTROL: random groups (shuffled - reference),0.9231849747474747,0.5181924715909092,1.3344468118686865,8
+mean_exit,motion vs proximity (motion - proximity),0.025175865800865768,-0.07150686553030301,0.14233630952380946,8

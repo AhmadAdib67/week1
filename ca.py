@@ -50,7 +50,7 @@ def place_from_tracks(df, frame, wall, margin=1):
         pos[pid] = cand[0]; taken.add(cand[0])
     return pos
 
-def simulate(pos0, groups, wall, exit_, seed=0, cohesion=True, R=2, release=3, max_wait=5, max_steps=400, speeds=None):
+def simulate(pos0, groups, wall, exit_, seed=0, cohesion=True, R=2, release=3, max_wait=5, max_steps=400, speeds=None, stats=None, ref=None):
     """pos0: {pid:(x,y)}, groups: {pid: group_id or None}. Returns (log DataFrame, exit_step dict)."""
     rng = np.random.default_rng(seed); d = floor_field(wall, exit_)
     pos = dict(pos0); H, W = wall.shape; exit_step = {}; log = []
@@ -66,7 +66,13 @@ def simulate(pos0, groups, wall, exit_, seed=0, cohesion=True, R=2, release=3, m
                 # wait if I'm ahead of a group-mate who is more than R cells behind
                 far = [q for q in mates[p] if q in pos and max(abs(pos[q][0]-x), abs(pos[q][1]-y)) > R
                        and d[pos[q][1], pos[q][0]] > d[y, x]]
-                if far and waited[p] < max_wait: waited[p] += 1; continue
+                if far and waited[p] < max_wait:
+                    waited[p] += 1
+                    if stats is not None:   # instrumentation only; does not change dynamics
+                        stats["waits"] = stats.get("waits", 0) + 1
+                        if ref is not None and (ref.get(p) is None or ref.get(p) != ref.get(far[0])):
+                            stats["false_waits"] = stats.get("false_waits", 0) + 1   # wait caused by a non-reference group
+                    continue
             waited[p] = 0
             occ = set(pos.values()); best, bd = (x, y), d[y, x]
             for dx, dy in MOVES:
